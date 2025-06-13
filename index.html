@@ -1,1 +1,49 @@
-Landing page HTML (already provided)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Couch To Door</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white text-gray-800">
+    <!-- Hero -->
+    <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 bg-gradient-to-b from-yellow-50 to-white">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">Bought It? We’ll Haul It.</h1>
+      <p class="text-lg md:text-2xl max-w-xl mb-8">From Couch to Door, we pick up your Facebook Marketplace, Craigslist, or OfferUp finds and deliver them straight to your home.</p>
+      <a href="#book" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full transition">Schedule a Pickup</a>
+    </section>
+
+    <!-- Services -->
+    <section class="py-16 bg-gray-100 text-center">
+      <h2 class="text-3xl font-bold mb-8">What We Pick Up</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto px-6">
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Furniture</h3>
+          <p>Couches, dressers, tables, chairs—you name it, we’ll move it.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Appliances</h3>
+          <p>Refrigerators, washers, dryers, even outdoor grills.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold mb-2">Large Items</h3>
+          <p>Mattresses, bikes, boxed goods, or anything too big for your car.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="book" class="py-16 bg-white text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Book?</h2>
+      <p class="mb-6 text-lg">Tap below to schedule your pickup. We’ll handle the heavy lifting.</p>
+      <a href="https://calendly.com/YOUR-SCHEDULING-LINK" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-full transition">Book Now</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white text-center py-6">
+      <p>&copy; 2025 CouchToDoor.com — All rights reserved.</p>
+      <p class="text-sm">Need help? <a href="mailto:support@couchtodoor.com" class="underline">support@couchtodoor.com</a></p>
+    </footer>
+  </body>
+</html>
