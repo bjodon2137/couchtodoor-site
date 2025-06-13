@@ -1,3 +1,3 @@
 # CouchToDoor
 
-Local delivery service for your Marketplace finds.
+Final version with visual upgrades, icons, and testimonials.
