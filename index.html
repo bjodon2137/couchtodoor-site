@@ -5,18 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Couch To Door</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Georgia', serif;
+      }
+    </style>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: '#1a2a41', // Navy
+              accent: '#dc9f45',  // Gold
+              cream: '#f8f5f0'    // Soft background
+            },
+            fontFamily: {
+              serif: ['Georgia', 'serif']
+            }
+          }
+        }
+      }
+    </script>
   </head>
-  <body class="bg-white text-gray-800">
+  <body class="bg-cream text-primary">
     <!-- Hero -->
-    <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 bg-gradient-to-b from-yellow-50 to-white">
-      <h1 class="text-4xl md:text-6xl font-bold mb-4">Bought It? We’ll Haul It.</h1>
+    <section class="min-h-screen flex flex-col justify-center items-center text-center p-6 bg-cream">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 font-serif">Bought It? We’ll Haul It.</h1>
       <p class="text-lg md:text-2xl max-w-xl mb-8">From Couch to Door, we help move your Facebook Marketplace, Craigslist, or OfferUp finds safely and affordably—right to your door.</p>
-      <a href="#book" class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold px-6 py-3 rounded-full transition">Schedule a Call</a>
+      <a href="#book" class="bg-accent hover:bg-yellow-700 text-white font-semibold px-6 py-3 rounded-full transition">Schedule a Call</a>
     </section>
 
     <!-- Services -->
-    <section class="py-16 bg-gray-100 text-center">
-      <h2 class="text-3xl font-bold mb-8">What We Pick Up</h2>
+    <section class="py-16 bg-white text-center">
+      <h2 class="text-3xl font-bold mb-8 font-serif">What We Pick Up</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto px-6">
         <div>
           <h3 class="text-xl font-semibold mb-2">Furniture</h3>
@@ -34,8 +55,8 @@
     </section>
 
     <!-- Call to Action -->
-    <section id="book" class="py-16 bg-white text-center">
-      <h2 class="text-3xl font-bold mb-4">Let’s Talk About Your Pickup</h2>
+    <section id="book" class="py-16 bg-cream text-center">
+      <h2 class="text-3xl font-bold mb-4 font-serif">Let’s Talk About Your Pickup</h2>
       <p class="mb-6 text-lg max-w-xl mx-auto">Use the calendar below to schedule a quick phone call. You’ll tell us what you need picked up and dropped off, and we’ll give you a quote. Prefer to text? Just let us know—we love texting and even use WhatsApp for added privacy.</p>
       <div class="max-w-4xl mx-auto">
         <iframe src="https://calendly.com/couchtodoor-support/schedule-a-pickup" width="100%" height="700" frameborder="0" scrolling="no"></iframe>
@@ -43,7 +64,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white text-center py-6">
+    <footer class="bg-primary text-white text-center py-6">
       <p>&copy; 2025 CouchToDoor.com — All rights reserved.</p>
       <p class="text-sm">Need help? <a href="mailto:support@couchtodoor.com" class="underline">support@couchtodoor.com</a></p>
     </footer>
