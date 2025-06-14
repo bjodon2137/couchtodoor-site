@@ -32,43 +32,57 @@
       <div class="relative z-10 text-white max-w-2xl animate-fade-in">
         <h1 class="text-5xl md:text-6xl font-bold font-serif mb-4">Bought It? We’ll Haul It.</h1>
         <p class="text-xl md:text-2xl mb-8">From Couch to Door, we help move your Marketplace finds safely and affordably—right to your door.</p>
-        <a href="#book" class="bg-accent hover:bg-yellow-700 text-white font-semibold px-6 py-3 rounded-full transition">Schedule a Call</a>
+        <a href="#estimate" class="bg-accent hover:bg-yellow-700 text-white font-semibold px-6 py-3 rounded-full transition">Get a Quote</a>
       </div>
     </section>
 
-    <!-- Services with Icons -->
+    <!-- Services -->
     <section class="py-16 bg-cream text-center">
       <h2 class="text-3xl font-bold mb-8 font-serif">What We Pick Up</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto px-6">
         <div>
-          <img src="assets/images/icon-furniture.png" alt="Furniture Icon" class="mx-auto mb-4 w-12 h-12">
           <h3 class="text-xl font-semibold mb-2">Furniture</h3>
           <p>Couches, dressers, tables, chairs—you name it, we’ll move it.</p>
         </div>
         <div>
-          <img src="assets/images/icon-appliances.png" alt="Appliance Icon" class="mx-auto mb-4 w-12 h-12">
           <h3 class="text-xl font-semibold mb-2">Appliances</h3>
           <p>Refrigerators, washers, dryers, even outdoor grills.</p>
         </div>
         <div>
-          <img src="assets/images/icon-large-items.png" alt="Large Items Icon" class="mx-auto mb-4 w-12 h-12">
           <h3 class="text-xl font-semibold mb-2">Large Items</h3>
           <p>Mattresses, bikes, boxed goods, or anything too big for your car.</p>
         </div>
       </div>
     </section>
 
-    <!-- Testimonials -->
-    <section class="py-16 bg-white text-center">
-      <h2 class="text-3xl font-bold mb-8 font-serif">What Customers Say</h2>
-      <div class="max-w-3xl mx-auto space-y-8 px-6">
-        <blockquote class="italic text-lg">“Texted them at 10am, couch delivered by 3. Unreal service!”<br><span class="block mt-2 font-semibold">— Emily R.</span></blockquote>
-        <blockquote class="italic text-lg">“Super friendly and easy to book. Love that I didn’t have to rent a truck.”<br><span class="block mt-2 font-semibold">— Marcus L.</span></blockquote>
-        <blockquote class="italic text-lg">“They even helped bring it inside and set it up. Worth every penny.”<br><span class="block mt-2 font-semibold">— Denise W.</span></blockquote>
-      </div>
+    <!-- Quote Estimator -->
+    <section id="estimate" class="py-16 bg-white text-center">
+      <h2 class="text-3xl font-bold mb-4 font-serif">Get a Quick Estimate</h2>
+      <p class="mb-6 text-lg max-w-xl mx-auto">Just a few quick details and we’ll give you a rough estimate instantly. You’ll confirm the final price on your call.</p>
+      <form id="quoteForm" class="max-w-xl mx-auto space-y-4">
+        <input type="text" id="pickup_zip" placeholder="Pickup ZIP Code" required class="w-full border border-gray-300 p-3 rounded">
+        <input type="text" id="dropoff_zip" placeholder="Drop-off ZIP Code" required class="w-full border border-gray-300 p-3 rounded">
+        <select id="item_type" required class="w-full border border-gray-300 p-3 rounded">
+          <option value="">Select Item Type</option>
+          <option>Couch</option>
+          <option>Washer/Dryer</option>
+          <option>Desk</option>
+          <option>Mattress</option>
+          <option>Other</option>
+        </select>
+        <select id="item_size" required class="w-full border border-gray-300 p-3 rounded">
+          <option value="">Select Item Size</option>
+          <option>Small</option>
+          <option>Medium</option>
+          <option>Large</option>
+        </select>
+        <input type="text" id="user_phone" placeholder="Your Mobile Number (for text confirmation)" class="w-full border border-gray-300 p-3 rounded">
+        <button type="submit" class="bg-accent text-white px-6 py-3 rounded-full font-semibold hover:bg-yellow-700">Get Estimate</button>
+        <p id="estimateResult" class="text-lg font-bold mt-4 hidden"></p>
+      </form>
     </section>
 
-    <!-- Call to Action -->
+    <!-- Calendly Embed -->
     <section id="book" class="py-16 bg-cream text-center">
       <h2 class="text-3xl font-bold mb-4 font-serif">Let’s Talk About Your Pickup</h2>
       <p class="mb-6 text-lg max-w-xl mx-auto">Use the calendar below to schedule a quick phone call. You’ll tell us what you need picked up and dropped off, and we’ll give you a quote. Prefer to text? Just let us know—we love texting and even use WhatsApp for added privacy.</p>
@@ -82,5 +96,30 @@
       <p>&copy; 2025 CouchToDoor.com — All rights reserved.</p>
       <p class="text-sm">Need help? <a href="mailto:support@couchtodoor.com" class="underline">support@couchtodoor.com</a></p>
     </footer>
+
+    <script>
+      document.getElementById('quoteForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const pickup = document.getElementById('pickup_zip').value;
+        const dropoff = document.getElementById('dropoff_zip').value;
+        const item_type = document.getElementById('item_type').value;
+        const item_size = document.getElementById('item_size').value;
+        const user_phone = document.getElementById('user_phone').value;
+
+        fetch('https://couch-to-door-sms.onrender.com/sms-alert', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ pickup_zip: pickup, dropoff_zip: dropoff, item_type, item_size, user_phone })
+        })
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById('estimateResult').textContent = `Estimated Quote: $${data.estimate.toFixed(2)}`;
+          document.getElementById('estimateResult').classList.remove('hidden');
+        })
+        .catch(err => {
+          alert('There was an error submitting your request.');
+        });
+      });
+    </script>
   </body>
 </html>
